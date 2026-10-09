@@ -7,11 +7,11 @@ import (
 )
 
 func NewHTTPServer(addr string) *http.Server {
-	httpsrv := newHTTPServer
+	httpsrv := newHTTPServer()
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", httpsrv.handleProduce).Methods("POST")
-	r.HandleFunc("/", httpsrv.handleConsume).Methods("GET")
+	r.HandleFunc("/", httpsrv.handleProduce).Methods("http.MethodPOST")
+	r.HandleFunc("/", httpsrv.handleConsume).Methods("http.MethodGET")
 
 	return &http.Server{
 		Addr:    addr,
